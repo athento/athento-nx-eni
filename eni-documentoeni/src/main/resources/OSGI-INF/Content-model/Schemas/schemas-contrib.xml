@@ -9,9 +9,13 @@
 
 	<extension target="org.nuxeo.ecm.core.schema.TypeService"
 		point="schema">
-		
+
 		<schema name="metadatosDocumentoEni" prefix="enidocmeta"
 			src="data/schemas/metadatosDocumentoEni.xsd" />
+		<schema name="firmasEni" prefix="enidocds" 
+			src="data/schemas/firmasEni.xsd" />
+		<schema name="contenidoDocumentoEni" prefix="enifile" 
+			src="data/schemas/contenidoDocumentoEni.xsd" />	
 
 	</extension>
 

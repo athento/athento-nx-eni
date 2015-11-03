@@ -8,7 +8,7 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:annotation>
 		<xsd:documentation xml:lang="es">XSD FIRMAS ELECTRONICAS ENI (v1.0)</xsd:documentation>
 	</xsd:annotation>
-	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+	<!-- <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/> -->
 	<xsd:element name="firmas" type="enids:firmas"/>
 	<xsd:complexType name="firmas">
 		<xsd:sequence>
@@ -16,7 +16,7 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="TipoFirmasElectronicas">
-		<xsd:sequence>
+		  <xsd:sequence>
 			<xsd:element name="TipoFirma">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="es">- TF01 - CSV. 	
@@ -52,8 +52,8 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 							<xsd:complexType>
 								<xsd:choice>
 									<xsd:element name="FirmaBase64" type="xsd:base64Binary"/>
-									<!--  ****** TODO: define ds:signature so we can use it
-									<xsd:element ref="ds:Signature"/> -->
+									 <!-- ****** TODO: define ds:signature so we can use it -->
+									<!-- <xsd:element ref="ds:Signature"/> -->
 									<xsd:element name="ReferenciaFirma">
 										<xsd:annotation>
 											<xsd:documentation xml:lang="es">Referencia interna al fichero que incluye la firma.</xsd:documentation>

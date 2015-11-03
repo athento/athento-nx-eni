@@ -8,6 +8,8 @@
 
 		<facet name="documentoEniFacet">
 			<schema name="metadatosDocumentoEni" />
+			<schema name="firmasEni" />
+			<schema name="contenidoDocumentoEni" />
 		</facet>	
 		
 	</extension>
