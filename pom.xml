@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.athento.nuxeo</groupId>
 	<artifactId>eni</artifactId>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<organization>
 		<name>Athento</name>
 		<url>http://www.athento.com</url>

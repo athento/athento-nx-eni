@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.athento.nuxeo</groupId>
     <artifactId>eni</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>eni-documentoeni</artifactId>
   <name>documentoeni</name>

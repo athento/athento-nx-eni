@@ -33,6 +33,8 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="Id" type="xsd:ID" use="optional"/>
+		<!-- <xsd:attribute name="Id" type="xsd:ID" use="optional"/> -->
+		<!-- EDITED FROM xsd:ID to xsd:string TO REUSE THE UID XSD IN NUXEO AND ALSO RENAMED TO IdEni-->
+		<xsd:attribute name="IdEni" type="xsd:string" use="optional"/>
 	</xsd:complexType>
 </xsd:schema>

@@ -10,7 +10,6 @@
 		<delete path="${bundle.fileName}.tmp" />
 		<unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp" />
 
-		<copy from="${bundle.fileName}.tmp/web/nuxeo.war" to="/" />
 		<append from="${bundle.fileName}.tmp/data/i18n/messages_en_EN.properties"
 			to="nuxeo.war/WEB-INF/classes/messages_en_EN.properties" addNewLine="true" />
 		<append from="${bundle.fileName}.tmp/data/i18n/messages_en_EN.properties"

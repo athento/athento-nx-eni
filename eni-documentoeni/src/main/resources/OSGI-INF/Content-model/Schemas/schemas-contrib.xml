@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- DOCTYPE SCHEMAS DEFINITION
-	CONTENTVIEWS AND ADVANCED SEARCH SCHEMAS NOT INCLUDED -->
+<!-- DOCTYPE SCHEMAS DEFINITION CONTENTVIEWS AND ADVANCED SEARCH SCHEMAS 
+	NOT INCLUDED -->
 
 <component name="org.athento.nuxeo.eni.documentoeni.schemas"
 	version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
-	
+
 	<extension target="org.nuxeo.ecm.core.schema.TypeService"
 		point="schema">
-		<!-- <schema name="bc_expedient" prefix="bc_expedient"
-			src="data/schemas/bc_expedient.xsd" />		 -->
+		
+		<schema name="metadatosDocumentoEni" prefix="enidocmeta"
+			src="data/schemas/metadatosDocumentoEni.xsd" />
+
 	</extension>
-	
+
 </component>

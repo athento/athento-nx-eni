@@ -3,8 +3,10 @@ Require-Bundle: org.nuxeo.runtime
 Bundle-Vendor: Athento
 Bundle-Version: 1.0
 Bundle-Name: Athento Nx ENI
-Nuxeo-Component: OSGI-INF/Content-model/Schemas/schemas-contrib.xml
+Nuxeo-Component: OSGI-INF/Content-model/Schemas/schemas-contrib.xml,
+ OSGI-INF/Content-model/Documents/doctype-contrib.xml,
+ OSGI-INF/Content-model/Facets/facets-contrib.xml
 Bundle-ManifestVersion: 2
 Created-By: Athento
-Bundle-SymbolicName: documentoeni
+Bundle-SymbolicName: org.athento.nuxeo.eni.documentoeni
 

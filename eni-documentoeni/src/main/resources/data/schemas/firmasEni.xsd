@@ -52,7 +52,8 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 							<xsd:complexType>
 								<xsd:choice>
 									<xsd:element name="FirmaBase64" type="xsd:base64Binary"/>
-									<xsd:element ref="ds:Signature"/>
+									<!--  ****** TODO: define ds:signature so we can use it
+									<xsd:element ref="ds:Signature"/> -->
 									<xsd:element name="ReferenciaFirma">
 										<xsd:annotation>
 											<xsd:documentation xml:lang="es">Referencia interna al fichero que incluye la firma.</xsd:documentation>
@@ -65,8 +66,11 @@ elementFormDefault="qualified" attributeFormDefault="unqualified">
 				</xsd:complexType>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="Id" type="xsd:ID" use="optional"/>
-		<xsd:attribute name="ref" type="xsd:string" use="optional">
+		<!-- <xsd:attribute name="Id" type="xsd:ID" use="optional"/> -->
+		<!-- EDITED FROM xsd:ID to xsd:string TO REUSE THE UID XSD IN NUXEO AND ALSO RENAMED TO IdEni-->
+		<xsd:attribute name="IdEni" type="xsd:string" use="optional"/>
+		<!-- EDITED FROM name="ref" to "refEni" -->
+		<xsd:attribute name="refEni" type="xsd:string" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="es">Almacena el identificador del nodo que se está firmando. En caso de firmas multinodo, se incluirá una lista separada por comas de los identificadores de los nodos firmados.</xsd:documentation>
 			</xsd:annotation>
