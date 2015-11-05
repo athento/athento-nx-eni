@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.nuxeo.eni.documentoeni.tablayout"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<layout name="TAB_ENI@tabLayout">
+			<templates>
+				<template mode="any">/layouts/eni_tab_layout_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<properties mode="any">
+						<property name="nxl_gridStyleClass_0">gridStyle12</property>
+					</properties>
+					<widget>container</widget>
+				</row>
+			</rows>
+			<widget name="container" type="container">
+				<labels>
+					<label mode="any"></label>
+				</labels>
+				<translated>false</translated>
+				<fields>
+					<field></field>
+				</fields>
+				<controls mode="any">
+					<control name="handleLabels">true</control>
+				</controls>
+				<subWidgets>
+					<widget name="sub0" type="toggleableLayoutWithForms">
+						<labels>
+							<label mode="any">label.eni.metadatosDocumentoEni</label>
+						</labels>
+						<translated>true</translated>
+						<properties widgetMode="view">
+							<property name="canToggleMode">#{currentUser.isMemberOf('administrators')}</property>
+							<property name="foldedByDefault">false</property>							
+							<property name="foldable">true</property>
+							<property name="widgetsDisplay">label_top</property>
+							<property name="initialLayoutName">metadatosDocumentoEni_form</property>
+							<property name="displayToggleActionInHeader">true</property>
+							<property name="initialActionLabel">label.eni.editbutton</property>
+						</properties>
+						<!-- <properties widgetMode="view">
+							<property name="toggledDocumentMode">edit</property>
+							<property name="initialActionLabel">label.eni.editbutton</property>
+							<property name="foldable">true</property>
+							<property name="foldedByDefault">false</property>
+							<property name="initialDocumentMode">view</property>
+							<property name="useAjaxForm">true</property>
+							<property name="canToggleMode">#{currentUser.isMemberOf('administrators')}
+							</property>
+							<property name="displayToggleActionInHeader">true</property>
+							<property name="showEditOptions">true</property>
+							<property name="defaultLayout">metadatosDocumentoEni_form</property>
+							<property name="cancelActionLabel">label.eni.cancelbutton</property>
+						</properties> -->
+						<controls mode="any">
+							<control name="handleLabels">true</control>
+						</controls>
+					</widget>
+				</subWidgets>
+			</widget>
+		</layout>
+	</extension>
+</component>

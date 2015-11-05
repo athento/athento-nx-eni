@@ -1,0 +1,6 @@
+"id","label","obsolete","ordering"
+"EE01","Original","0","1"
+"EE02","Copia electrónica auténtica con cambio de formato","0","2"
+"EE03","Copia electrónica auténtica de documento papel","0","3"
+"EE04","Copia electrónica parcial auténtica","0","4"
+"EE99","Otros","0","5"

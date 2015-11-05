@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+	name="org.athento.nuxeo.eni.documentoeni.formlayout-eni-metadatosDocumentoEni"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager"
+		point="layouts">
+
+		<layout name="metadatosDocumentoEni_form">
+			<templates>
+				<template mode="any">/layouts/eni_form_layout_template.xhtml
+				</template>
+			</templates>
+			<rows>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+						<property name="nxl_colspan_1">2</property>
+					</properties>
+					<widget>VersionNTI</widget>
+					<widget>IdEni</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">4</property>
+					</properties>
+					<widget>OrigenCiudadanoAdministracion</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">4</property>
+					</properties>
+					<widget>Organo</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">2</property>
+						<property name="nxl_colspan_1">2</property>
+					</properties>
+					<widget>Identificador</widget>
+					<widget>FechaCaptura</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">1</property>
+						<property name="nxl_colspan_0">3</property>
+					</properties>
+					<widget>IdentificadorDocumentoOrigen</widget>
+					<widget>ValorEstadoElaboracion</widget>
+				</row>
+				<row>
+					<properties mode="any">
+						<property name="nxl_colspan_0">4</property>
+					</properties>
+					<widget>TipoDocumental</widget>
+				</row>
+			</rows>
+			<widget name="VersionNTI" type="text">
+				<labels>
+					<label mode="any">label.eni.VersionNTI</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/VersionNTI</field>
+				</fields>
+			</widget>
+			<widget name="OrigenCiudadanoAdministracion" type="checkbox">
+				<labels>
+					<label mode="any">label.eni.OrigenCiudadanoAdministracion</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/OrigenCiudadanoAdministracion</field>
+				</fields>
+			</widget>
+			<widget name="IdEni" type="text">
+				<labels>
+					<label mode="any">label.eni.IdEni</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/IdEni</field>
+				</fields>
+			</widget>
+			<widget name="Organo" type="list">
+				<labels>
+					<label mode="any">label.eni.Organo</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/Organo</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="display">table</property>
+				</properties>
+				<subWidgets>
+					<widget name="sub0" type="text">
+						<labels>
+							<label mode="any"></label>
+						</labels>
+						<translated>false</translated>
+						<fields>
+							<field></field>
+						</fields>
+					</widget>
+				</subWidgets>
+			</widget>
+			<widget name="Identificador" type="text">
+				<labels>
+					<label mode="any">label.eni.Identificador</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/Identificador</field>
+				</fields>
+			</widget>
+			<widget name="FechaCaptura" type="datetime">
+				<labels>
+					<label mode="any">label.eni.FechaCaptura</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/FechaCaptura</field>
+				</fields>
+				<properties widgetMode="edit">
+					<property name="format">#{nxu:basicDateAndTimeFormatter()}
+					</property>
+				</properties>
+			</widget>
+			<widget name="IdentificadorDocumentoOrigen" type="text">
+				<labels>
+					<label mode="any">label.eni.IdentificadorDocumentoOrigen</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/EstadoElaboracion/IdentificadorDocumentoOrigen</field>
+				</fields>
+			</widget>
+			<widget name="ValorEstadoElaboracion" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.eni.ValorEstadoElaboracion</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/EstadoElaboracion/ValorEstadoElaboracion</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">Elabor_Voc</property>
+					<property name="localize">true</property>
+					<property name="displayIdAndLabel">true</property>
+					<property name="ordering">ordering</property>
+				</properties>
+			</widget>
+			<widget name="TipoDocumental" type="selectOneDirectory">
+				<labels>
+					<label mode="any">label.eni.TipoDocumental</label>
+				</labels>
+				<translated>true</translated>
+				<fields>
+					<field>enidocmeta:metadatos/TipoDocumental</field>
+				</fields>
+				<properties widgetMode="any">
+					<property name="directoryName">TipoDoc_Voc</property>
+					<property name="localize">true</property>
+					<property name="displayIdAndLabel">true</property>
+					<property name="ordering">ordering</property>
+				</properties>
+			</widget>
+		</layout>
+	</extension>
+</component>
+			

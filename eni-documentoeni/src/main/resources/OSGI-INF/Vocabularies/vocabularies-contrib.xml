@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.nuxeo.eni.documentoeni.vocabularies"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory"
+		point="directories">
+		
+		<directory name="Elabor_Voc">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_Elabor_Voc</table>
+			<dataFile>data/vocabularies/ValorEstadoElaboracion.csv</dataFile>
+		</directory>
+		
+		<directory name="TipoDoc_Voc">
+			<schema>vocabulary</schema>
+			<dataSource>java:/nxsqldirectory</dataSource>
+			<cacheTimeout>3600</cacheTimeout>
+			<cacheMaxSize>1000</cacheMaxSize>
+			<idField>id</idField>
+			<autoincrementIdField>false</autoincrementIdField>
+			<createTablePolicy>on_missing_columns</createTablePolicy>
+			<table>vocabulary_TipoDoc_Voc</table>
+			<dataFile>data/vocabularies/TipoDocumental.csv</dataFile>
+		</directory>
+		
+	</extension>
+
+	<extension target="org.nuxeo.ecm.directory.ui.DirectoryUIManager"
+		point="directories">
+
+		<directory name="Elabor_Voc" layout="vocabulary" sortField="id" />
+		<directory name="TipoDoc_Voc" layout="vocabulary" sortField="id" />
+
+	</extension>
+
+</component>
