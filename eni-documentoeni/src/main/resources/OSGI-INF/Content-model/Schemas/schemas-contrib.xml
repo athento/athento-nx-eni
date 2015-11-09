@@ -12,11 +12,9 @@
 
 		<schema name="metadatosDocumentoEni" prefix="enidocmeta"
 			src="data/schemas/metadatosDocumentoEni.xsd" />
-		<schema name="firmasEni" prefix="enidocds" 
-			src="data/schemas/firmasEni.xsd" />
-		<schema name="contenidoDocumentoEni" prefix="enifile" 
-			src="data/schemas/contenidoDocumentoEni.xsd" />	
-
+		<schema name="firmasEni" prefix="enids" src="data/schemas/firmasEni.xsd" />
+		<schema name="contenidoDocumentoEni" prefix="enifile"
+			src="data/schemas/contenidoDocumentoEni.xsd" />			
 	</extension>
 
 </component>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-xmlns:enids="http://administracionelectronica.gob.es/ENI/XSD/v1.0/firma" 
-xmlns:enidocmeta="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/metadatos" 
-xmlns:enifile="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/contenido" 
-xmlns:enidoc="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e" 
-targetNamespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e" 
+xmlns:enids="Athento-firma" 
+xmlns:enidocmeta="Athento-metadatos" 
+xmlns:enifile="Athento-contenido" 
+xmlns:enidoc="Athento-documento-e" 
+targetNamespace="Athento-documento-e" 
 elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:annotation>
-		<xsd:documentation xml:lang="es">XSD DOCUMENTO ENI (v1.0)</xsd:documentation>
+		<xsd:documentation xml:lang="es">Athento Implementation XSD DOCUMENTO ENI (v1.0)</xsd:documentation>
 	</xsd:annotation>
 	<xsd:import namespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/metadatos" schemaLocation="data/schemas/metadatosDocumentoEni.xsd"/>
 	<xsd:import namespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/firma" schemaLocation="data/schemas/firmasEni.xsd"/>

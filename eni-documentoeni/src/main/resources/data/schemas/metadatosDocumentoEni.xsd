@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsd:schema 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-xmlns:enidocmeta="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/metadatos" 
-targetNamespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/metadatos" 
+xmlns:enidocmeta="Athento-metadatos" 
+targetNamespace="Athento-metadatos" 
 elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:annotation>
-		<xsd:documentation xml:lang="es">XSD METADATOS DOCUMENTO ENI (v1.0)</xsd:documentation>
+		<xsd:documentation xml:lang="es">Athento Implementation XSD METADATOS DOCUMENTO ENI (v1.0)</xsd:documentation>
 	</xsd:annotation>
 	<xsd:element name="metadatos" type="enidocmeta:TipoMetadatos"/>
 	<xsd:complexType name="TipoMetadatos">

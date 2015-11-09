@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-xmlns:enifile="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/contenido" 
-targetNamespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/contenido" 
+xmlns:enifile="Athento-contenido" 
+targetNamespace="Athento-contenido" 
 elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:annotation>
-		<xsd:documentation xml:lang="es">XSD CONTENIDO DOCUMENTO ENI (v1.0)</xsd:documentation>
+		<xsd:documentation xml:lang="es">Athento Implementation XSD CONTENIDO DOCUMENTO ENI (v1.0)</xsd:documentation>
 	</xsd:annotation>
 	<xsd:element name="contenido" type="enifile:TipoContenido"/>
 	<xsd:complexType name="TipoContenido">
