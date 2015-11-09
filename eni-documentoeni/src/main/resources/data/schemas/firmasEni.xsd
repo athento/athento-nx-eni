@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:enids="Athento-firma" targetNamespace="Athento-firma"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="es">Athento Implementation
+			XSD FIRMAS ELECTRONICAS
+			ENI (v1.0)
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="firma" type="enids:TipoFirmasElectronicas" />	
+	<xsd:complexType name="TipoFirmasElectronicas">
+		<xsd:sequence>
+			<xsd:element name="TipoFirma">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="es">- TF01 - CSV.
+						- TF02 -
+						XAdES internally detached signature.
+						- TF03 - XAdES enveloped
+						signature.
+						- TF04 - CAdES detached/explicit signature.
+						- TF05 -
+						CAdES attached/implicit signature.
+						- TF06 - PAdES.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="TF01" />
+						<xsd:enumeration value="TF02" />
+						<xsd:enumeration value="TF03" />
+						<xsd:enumeration value="TF04" />
+						<xsd:enumeration value="TF05" />
+						<xsd:enumeration value="TF06" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="ContenidoFirma">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="CSV">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ValorCSV" type="xsd:string" />
+									<xsd:element name="RegulacionGeneracionCSV" type="xsd:string" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="FirmaConCertificado">
+							<xsd:complexType>
+								<xsd:choice>
+									<xsd:element name="FirmaBase64" type="xsd:base64Binary" />
+									<!-- ****** TODO: define ds:signature so we can use it -->
+									<xsd:element ref="enids:Signature" />
+									<xsd:element name="ReferenciaFirma">
+										<xsd:annotation>
+											<xsd:documentation xml:lang="es">Referencia
+												interna al fichero que incluye la firma.
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:choice>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<!-- <xsd:attribute name="Id" type="xsd:ID" use="optional"/> -->
+		<!-- EDITED FROM xsd:ID to xsd:string TO REUSE THE UID XSD IN NUXEO AND 
+			ALSO RENAMED TO IdEni -->
+		<xsd:attribute name="IdEni" type="xsd:string" use="optional" />
+		<!-- EDITED FROM name="ref" to "refEni" -->
+		<xsd:attribute name="refEni" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="es">Almacena el
+					identificador del nodo que se está firmando. En caso de firmas
+					multinodo, se incluirá una lista separada por comas de los
+					identificadores de los nodos firmados.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!-- Basic Types Defined for Signatures -->
+
+	<xsd:simpleType name="CryptoBinary">
+		<xsd:restriction base="xsd:base64Binary">
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Start Signature -->
+
+	<xsd:element name="Signature" type="enids:SignatureType_" />
+	<xsd:complexType name="SignatureType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:SignedInfo" />
+			<xsd:element ref="enids:SignatureValue" />
+			<xsd:element ref="enids:KeyInfo" minOccurs="0" />
+			<xsd:element ref="enids:Object" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="SignatureValue" type="enids:SignatureValueType_" />
+	<xsd:complexType name="SignatureValueType_">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:base64Binary">
+				<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!-- Start SignedInfo -->
+
+	<xsd:element name="SignedInfo" type="enids:SignedInfoType_" />
+	<xsd:complexType name="SignedInfoType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:CanonicalizationMethod" />
+			<xsd:element ref="enids:SignatureMethod" />
+			<xsd:element ref="enids:Reference" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="CanonicalizationMethod" type="enids:CanonicalizationMethodType_" />
+	<xsd:complexType name="CanonicalizationMethodType_"
+		mixed="true">
+		<xsd:attribute name="Algorithm" type="xsd:anyURI" use="required" />
+	</xsd:complexType>
+
+	<xsd:element name="SignatureMethod" type="enids:SignatureMethodType_" />
+	<xsd:complexType name="SignatureMethodType_" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="HMACOutputLength" minOccurs="0"
+				type="enids:HMACOutputLengthType_" />
+		</xsd:sequence>
+		<xsd:attribute name="Algorithm" type="xsd:anyURI" use="required" />
+	</xsd:complexType>
+
+	<!-- Start Reference -->
+
+	<xsd:element name="Reference" type="enids:ReferenceType_" />
+	<xsd:complexType name="ReferenceType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:Transforms" minOccurs="0" />
+			<xsd:element ref="enids:DigestMethod" />
+			<xsd:element ref="enids:DigestValue" />
+		</xsd:sequence>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+		<xsd:attribute name="URI" type="xsd:anyURI" use="optional" />
+		<xsd:attribute name="Type_" type="xsd:anyURI" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="Transforms" type="enids:TransformsType_" />
+	<xsd:complexType name="TransformsType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:Transform" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="Transform" type="enids:TransformType_" />
+	<xsd:complexType name="TransformType_" mixed="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="XPath" type="xsd:string" />
+		</xsd:choice>
+		<xsd:attribute name="Algorithm" type="xsd:anyURI" use="required" />
+	</xsd:complexType>
+
+	<!-- End Reference -->
+
+	<xsd:element name="DigestMethod" type="enids:DigestMethodType_" />
+	<xsd:complexType name="DigestMethodType_" mixed="true">
+		<xsd:attribute name="Algorithm" type="xsd:anyURI" use="required" />
+	</xsd:complexType>
+
+	<xsd:element name="DigestValue" type="enids:DigestValueType_" />
+	<xsd:simpleType name="DigestValueType_">
+		<xsd:restriction base="xsd:base64Binary" />
+	</xsd:simpleType>
+
+	<!-- End SignedInfo -->
+
+	<!-- Start KeyInfo -->
+
+	<xsd:element name="KeyInfo" type="enids:KeyInfoType_" />
+	<xsd:complexType name="KeyInfoType_" mixed="true">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element ref="enids:KeyName" />
+			<xsd:element ref="enids:KeyValue" />
+			<xsd:element ref="enids:RetrievalMethod" />
+			<xsd:element ref="enids:X509Data" />
+			<xsd:element ref="enids:PGPData" />
+			<xsd:element ref="enids:SPKIData" />
+			<xsd:element ref="enids:MgmtData" />
+		</xsd:choice>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="KeyName" type="xsd:string" />
+	<xsd:element name="MgmtData" type="xsd:string" />
+
+	<xsd:element name="KeyValue" type="enids:KeyValueType_" />
+	<xsd:complexType name="KeyValueType_" mixed="true">
+		<xsd:choice>
+			<xsd:element ref="enids:DSAKeyValue" />
+			<xsd:element ref="enids:RSAKeyValue" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:element name="RetrievalMethod" type="enids:RetrievalMethodType_" />
+	<xsd:complexType name="RetrievalMethodType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:Transforms" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute name="URI" type="xsd:anyURI" />
+		<xsd:attribute name="Type_" type="xsd:anyURI" use="optional" />
+	</xsd:complexType>
+
+	<!-- Start X509Data -->
+
+	<xsd:element name="X509Data" type="enids:X509DataType_" />
+	<xsd:complexType name="X509DataType_">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:choice>
+				<xsd:element name="X509IssuerSerial" type="enids:X509IssuerSerialType_" />
+				<xsd:element name="X509SKI" type="xsd:base64Binary" />
+				<xsd:element name="X509SubjectName" type="xsd:string" />
+				<xsd:element name="X509Certificate" type="xsd:base64Binary" />
+				<xsd:element name="X509CRL" type="xsd:base64Binary" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="X509IssuerSerialType_">
+		<xsd:sequence>
+			<xsd:element name="X509IssuerName" type="xsd:string" />
+			<xsd:element name="X509SerialNumber" type="xsd:integer" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- End X509Data -->
+
+	<!-- Begin PGPData -->
+
+	<xsd:element name="PGPData" type="enids:PGPDataType_" />
+	<xsd:complexType name="PGPDataType_">
+		<xsd:choice>
+			<xsd:sequence>
+				<xsd:element name="PGPKeyID" type="xsd:base64Binary" />
+				<xsd:element name="PGPKeyPacket" type="xsd:base64Binary"
+					minOccurs="0" />
+			</xsd:sequence>
+			<xsd:sequence>
+				<xsd:element name="PGPKeyPacket" type="xsd:base64Binary" />
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+
+	<!-- End PGPData -->
+
+	<!-- Begin SPKIData -->
+
+	<xsd:element name="SPKIData" type="enids:SPKIDataType_" />
+	<xsd:complexType name="SPKIDataType_">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="SPKISexp" type="xsd:base64Binary" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- End SPKIData -->
+
+	<!-- End KeyInfo -->
+
+	<!-- Start Object (Manifest, SignatureProperty) -->
+
+	<xsd:element name="Object" type="enids:ObjectType_" />
+	<xsd:complexType name="ObjectType_" mixed="true">
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+		<xsd:attribute name="MimeType_" type="xsd:string" use="optional" /> <!-- add a grep facet -->
+		<xsd:attribute name="Encoding" type="xsd:anyURI" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="Manifest" type="enids:ManifestType_" />
+	<xsd:complexType name="ManifestType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:Reference" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="SignatureProperties" type="enids:SignaturePropertiesType_" />
+	<xsd:complexType name="SignaturePropertiesType_">
+		<xsd:sequence>
+			<xsd:element ref="enids:SignatureProperty" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<xsd:element name="SignatureProperty" type="enids:SignaturePropertyType_" />
+	<xsd:complexType name="SignaturePropertyType_" mixed="true">
+		<xsd:attribute name="Target" type="xsd:anyURI" use="required" />
+		<xsd:attribute name="Id_" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<!-- End Object (Manifest, SignatureProperty) -->
+
+	<!-- Start Algorithm Parameters -->
+
+	<xsd:simpleType name="HMACOutputLengthType_">
+		<xsd:restriction base="xsd:integer" />
+	</xsd:simpleType>
+
+	<!-- Start KeyValue Element-types -->
+
+	<xsd:element name="DSAKeyValue" type="enids:DSAKeyValueType_" />
+	<xsd:complexType name="DSAKeyValueType_">
+		<xsd:sequence>
+			<xsd:sequence minOccurs="0">
+				<xsd:element name="P" type="enids:CryptoBinary" />
+				<xsd:element name="Q" type="enids:CryptoBinary" />
+			</xsd:sequence>
+			<xsd:element name="G" type="enids:CryptoBinary"
+				minOccurs="0" />
+			<xsd:element name="Y" type="enids:CryptoBinary" />
+			<xsd:element name="J" type="enids:CryptoBinary"
+				minOccurs="0" />
+			<xsd:sequence minOccurs="0">
+				<xsd:element name="Seed" type="enids:CryptoBinary" />
+				<xsd:element name="PgenCounter" type="enids:CryptoBinary" />
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="RSAKeyValue" type="enids:RSAKeyValueType_" />
+	<xsd:complexType name="RSAKeyValueType_">
+		<xsd:sequence>
+			<xsd:element name="Modulus" type="enids:CryptoBinary" />
+			<xsd:element name="Exponent" type="enids:CryptoBinary" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- End KeyValue Element-types -->
+
+	<!-- End Signature -->
+
+
+</xsd:schema>

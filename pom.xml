@@ -1,7 +1,98 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.athento.nuxeo</groupId>
-  <artifactId>eni</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>Athento NX ENI</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.athento.nuxeo</groupId>
+	<artifactId>eni</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<organization>
+		<name>Athento</name>
+		<url>http://www.athento.com</url>
+	</organization>	
+	<packaging>pom</packaging>
+	<name>Athento Nx ENI</name>
+	<description>Athento Nx ENI</description>
+	<properties>
+		<nuxeo.platform.version>cap6.0</nuxeo.platform.version>
+	</properties>
+
+	<developers>
+		<developer>
+			<id>josemariajimenez</id>
+			<name>José María Jiménez</name>
+			<email>jmj@athento.com</email>
+			<organization>Yerbabuena Software</organization>
+			<organizationUrl>http://www.athento.com</organizationUrl>
+		</developer>
+	</developers>
+	
+	<distributionManagement>
+		<repository>
+			<id>eni</id>
+			<name>Athento Releases</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>eni</id>
+			<name>Athento Artifact Snapshots</name>
+			<url>http://maven2.yerbabuena.es/artifactory/athento-public-snapshot</url>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.2</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<goals>
+								<goal>create</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<format>{0,date,yyyyMMdd-HHmmss}</format>
+						<items>
+							<item>timestamp</item>
+						</items>
+						<doCheck>false</doCheck>
+						<doUpdate>false</doUpdate>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+					<configuration>
+						<archive>
+							<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+							<manifestEntries>
+								<Bundle-Version>${project.version}-t${buildNumber}</Bundle-Version>
+								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<modules>
+		<module>eni-documentoeni</module>
+	</modules>
 </project>

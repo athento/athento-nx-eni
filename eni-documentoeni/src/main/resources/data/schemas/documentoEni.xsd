@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:enids="Athento-firma" 
+xmlns:enidocmeta="Athento-metadatos" 
+xmlns:enifile="Athento-contenido" 
+xmlns:enidoc="Athento-documento-e" 
+targetNamespace="Athento-documento-e" 
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="es">Athento Implementation XSD DOCUMENTO ENI (v1.0)</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/metadatos" schemaLocation="data/schemas/metadatosDocumentoEni.xsd"/>
+	<xsd:import namespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/firma" schemaLocation="data/schemas/firmasEni.xsd"/>
+	<xsd:import namespace="http://administracionelectronica.gob.es/ENI/XSD/v1.0/documento-e/contenido" schemaLocation="data/schemas/contenidoDocumentoEni.xsd"/>
+	<xsd:element name="documento" type="enidoc:TipoDocumento">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="es">El elemento "documento" podrá aparecer como elemento raíz de un documento XML objeto de intercambio o como elemento no raíz (elemento hijo).</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="TipoDocumento">
+		<xsd:sequence>
+			<xsd:element ref="enifile:contenido"/>
+			<xsd:element ref="enidocmeta:metadatos"/>
+			<xsd:element ref="enids:firmas" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="es">La firma es obligatoria para el documento administrativo electrónico y para todo aquel documento electrónico susceptible de ser incorporado en un expediente electrónico.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<!-- <xsd:attribute name="Id" type="xsd:ID" use="optional"/> -->
+		<!-- EDITED FROM xsd:ID to xsd:string TO REUSE THE UID XSD IN NUXEO AND ALSO RENAMED TO IdEni -->
+		<xsd:attribute name="IdEni" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+</xsd:schema>

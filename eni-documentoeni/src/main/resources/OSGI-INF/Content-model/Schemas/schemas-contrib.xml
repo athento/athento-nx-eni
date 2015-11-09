@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DOCTYPE SCHEMAS DEFINITION CONTENTVIEWS AND ADVANCED SEARCH SCHEMAS 
+	NOT INCLUDED -->
+
+<component name="org.athento.nuxeo.eni.documentoeni.schemas"
+	version="1.0.0">
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension target="org.nuxeo.ecm.core.schema.TypeService"
+		point="schema">
+
+		<schema name="metadatosDocumentoEni" prefix="enidocmeta"
+			src="data/schemas/metadatosDocumentoEni.xsd" />
+		<schema name="firmasEni" prefix="enids" src="data/schemas/firmasEni.xsd" />
+		<schema name="contenidoDocumentoEni" prefix="enifile"
+			src="data/schemas/contenidoDocumentoEni.xsd" />			
+	</extension>
+
+</component>
