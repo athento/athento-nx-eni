@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:enids="Athento-firma"
-	targetNamespace="Athento-firma"
+	xmlns:enids="Athento-firma" targetNamespace="Athento-firma"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:annotation>
-		<xsd:documentation xml:lang="es">Athento Implementation XSD FIRMAS ELECTRONICAS
+		<xsd:documentation xml:lang="es">Athento Implementation
+			XSD FIRMAS ELECTRONICAS
 			ENI (v1.0)
 		</xsd:documentation>
-	</xsd:annotation>	
-	<xsd:element name="firmas" type="enids:firmas" />
-	<xsd:complexType name="firmas">
-		<xsd:sequence>
-			<xsd:element name="firma" type="enids:TipoFirmasElectronicas"
-				minOccurs="1" maxOccurs="unbounded" />
-		</xsd:sequence>
-	</xsd:complexType>
+	</xsd:annotation>
+	<xsd:element name="firma" type="enids:TipoFirmasElectronicas" />	
 	<xsd:complexType name="TipoFirmasElectronicas">
 		<xsd:sequence>
 			<xsd:element name="TipoFirma">
@@ -130,7 +124,8 @@
 	</xsd:complexType>
 
 	<xsd:element name="CanonicalizationMethod" type="enids:CanonicalizationMethodType_" />
-	<xsd:complexType name="CanonicalizationMethodType_" mixed="true">
+	<xsd:complexType name="CanonicalizationMethodType_"
+		mixed="true">
 		<xsd:attribute name="Algorithm" type="xsd:anyURI" use="required" />
 	</xsd:complexType>
 
@@ -253,7 +248,8 @@
 		<xsd:choice>
 			<xsd:sequence>
 				<xsd:element name="PGPKeyID" type="xsd:base64Binary" />
-				<xsd:element name="PGPKeyPacket" type="xsd:base64Binary" minOccurs="0" />
+				<xsd:element name="PGPKeyPacket" type="xsd:base64Binary"
+					minOccurs="0" />
 			</xsd:sequence>
 			<xsd:sequence>
 				<xsd:element name="PGPKeyPacket" type="xsd:base64Binary" />
@@ -324,9 +320,11 @@
 				<xsd:element name="P" type="enids:CryptoBinary" />
 				<xsd:element name="Q" type="enids:CryptoBinary" />
 			</xsd:sequence>
-			<xsd:element name="G" type="enids:CryptoBinary" minOccurs="0" />
+			<xsd:element name="G" type="enids:CryptoBinary"
+				minOccurs="0" />
 			<xsd:element name="Y" type="enids:CryptoBinary" />
-			<xsd:element name="J" type="enids:CryptoBinary" minOccurs="0" />
+			<xsd:element name="J" type="enids:CryptoBinary"
+				minOccurs="0" />
 			<xsd:sequence minOccurs="0">
 				<xsd:element name="Seed" type="enids:CryptoBinary" />
 				<xsd:element name="PgenCounter" type="enids:CryptoBinary" />
